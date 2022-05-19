@@ -1,9 +1,10 @@
 import express, { Request, Response } from 'express';
-import { body, validationResult } from 'express-validator';
-import { BadRequestError } from '../errors/BadRequestError';
-import { RequestValidationError } from '../errors/RequestValidationError';
-import { User } from '../models/User';
+import { body } from 'express-validator';
 import jwt from 'jsonwebtoken';
+
+import { BadRequestError } from '../errors/BadRequestError';
+import { validateRequest } from '../middlewares/validateRequest';
+import { User } from '../models/User';
 
 const router = express.Router();
 
@@ -16,13 +17,8 @@ router.post(
       .isLength({ min: 8, max: 128 })
       .withMessage('Password must be between 8 and 128 characters'),
   ],
+  validateRequest,
   async (req: Request, res: Response) => {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      throw new RequestValidationError(errors.array());
-    }
-
     const { email, password } = req.body;
     const existingUser = await User.findOne({ email });
 
