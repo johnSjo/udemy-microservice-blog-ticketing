@@ -35,6 +35,7 @@ router.post(
 
     const userJwt = jwt.sign(
       { id: user.id, email: user.email },
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       process.env.JWT_KEY!
     );
 
