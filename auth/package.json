@@ -5,7 +5,15 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node-dev --poll src/index.ts",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "test": "jest --watchAll --no-cache --detectOpenHandles"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "./src/test/setup.ts"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -24,8 +32,14 @@
     "typescript": "^4.6.4"
   },
   "devDependencies": {
+    "@types/jest": "^27.5.1",
+    "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.25.0",
     "@typescript-eslint/parser": "^5.25.0",
-    "eslint": "^8.15.0"
+    "eslint": "^8.15.0",
+    "jest": "^28.1.0",
+    "mongodb-memory-server": "^8.5.2",
+    "supertest": "^6.2.3",
+    "ts-jest": "^28.0.2"
   }
 }
