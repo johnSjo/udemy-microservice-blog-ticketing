@@ -1,4 +1,3 @@
-import { randomBytes } from 'crypto';
 import jwt from 'jsonwebtoken';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
@@ -26,13 +25,11 @@ afterAll(async () => {
 
 export const getSignupCookie = () => {
   const email = 'test@test.com';
-  const password = 'password';
-  const id = randomBytes(8).toString('hex');
+  const id = new mongoose.Types.ObjectId().toHexString();
 
   const payload = {
     id,
     email,
-    password,
   };
   const token = jwt.sign(
     payload,
