@@ -1,10 +1,9 @@
+import { NotFoundError, errorHandler } from '@johnsjo_ed_tickets/common';
 import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
 import express from 'express';
 import 'express-async-errors';
 
-import { NotFoundError } from './errors/NotFoundError';
-import { errorHandler } from './middlewares/errorHandler';
 import { currentUserRouter } from './routes/currentUser';
 import { signinRouter } from './routes/signin';
 import { signoutRouter } from './routes/signout';
