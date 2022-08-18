@@ -1,9 +1,9 @@
 import { Message } from 'node-nats-streaming';
-import { Listener } from './BaseListener';
+import { Publisher } from './BasePublisher';
 import { Subjects } from './Subjects';
 import { TicketCreatedEvent } from './TicketCreatedEvent';
 
-export class TicketCreatedListener extends Listener<TicketCreatedEvent> {
+export class TicketCreatedPublisher extends Publisher<TicketCreatedEvent> {
   readonly subject = Subjects.TICKET_CREATED;
   queueGroupName = 'payments-service';
 
