@@ -7,3 +7,7 @@ This is just the work-along-code of the course 'Microservices with Node JS and R
 ## Development secrets
 
 k create secret generic jwt-secret --from-literal=JWT_KEY=asdf
+
+### Things to remember
+
+ingress-nginx

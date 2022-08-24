@@ -4,6 +4,8 @@ import mongoose from 'mongoose';
 
 let mongo: MongoMemoryServer;
 
+jest.mock('../NatsWrapper');
+
 beforeAll(async () => {
   process.env.JWT_KEY = 'test key';
 
@@ -14,6 +16,8 @@ beforeAll(async () => {
 });
 
 beforeEach(async () => {
+  jest.clearAllMocks();
+
   const collections = await mongoose.connection.db.collections();
   collections.forEach((collection) => collection.deleteMany({}));
 });
